@@ -10,18 +10,7 @@ import orderRouter from "./routes/orderRoute.js";
 
 
 
-app.use(cors({
-  origin: [
-    
-    "https://shopease-collections.vercel.app" // vercel frontend
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
 
-// very important for preflight
-app.options("*", cors());
 
 //app congig
 const app = express();
@@ -30,9 +19,24 @@ connectDB()
 connectCloudinary()
 
 
-//middleware
-app.use(express.json())
-// app.use(cors())
+
+
+// middleware (MUST be before routes)
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://shopease-collections.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+// handle preflight requests
+app.options("*", cors());
+
+app.use(express.json());
+
 
 
 //api endpoints
