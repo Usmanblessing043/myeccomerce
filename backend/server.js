@@ -9,6 +9,20 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
 
+
+app.use(cors({
+  origin: [
+    
+    "https://shopease-collections.vercel.app" // vercel frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+// very important for preflight
+app.options("*", cors());
+
 //app congig
 const app = express();
 const port = process.env.PORT || 4000;
@@ -18,7 +32,7 @@ connectCloudinary()
 
 //middleware
 app.use(express.json())
-app.use(cors())
+// app.use(cors())
 
 
 //api endpoints
