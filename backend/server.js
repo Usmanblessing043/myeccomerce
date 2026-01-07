@@ -28,14 +28,12 @@ app.use(cors({
     "https://shopease-collections.vercel.app"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "token"],
   credentials: true
 }));
 
-// handle preflight requests
 app.options("*", cors());
 
-app.use(express.json());
 
 
 
