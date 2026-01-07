@@ -19,20 +19,9 @@ connectDB()
 connectCloudinary()
 
 
-
-
-// middleware (MUST be before routes)
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://shopease-collections.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "token"],
-  credentials: true
-}));
-
-app.options("*", cors());
+//middleware
+app.use(express.json())
+app.use(cors())
 
 
 
@@ -48,7 +37,7 @@ app.get("/",(req,res)=>{
 })
 
 app.listen(port,()=>{
-    console.log(`Server started on PORT: ${port}`);
+    console.log(`Server starteeed on PORT: ${port}`);
     
 })
 
